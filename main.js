@@ -96,5 +96,27 @@ let formData = [
 
 
 // -------- Your Code Goes Below this Line --------
+let formFields = document.querySelector( "#fields" )
+for( let i = 0; i < formData.length; i++ ) {
+  if (formData[i].type === "select"){
+    let input = document.createElement("select")
+    for (var j = 0; j < formData[i].options.length; j++) {
+      let option = document.createElement("option")
+      option.textContent = formData[i].options[j].label
+      input.appendChild(option)
+    }
+    formFields.appendChild(input)
+  } else if (formData[i].type === "textarea") {
+    let textarea = document.createElement("textarea")
+    formFields.appendChild(textarea)
+    textarea.setAttribute("placeholder", formData[i].label)
+  } else {
+  let input = document.createElement("input")
 
-
+  formFields.appendChild(input)
+  input.setAttribute("type", formData[i].type)
+  input.setAttribute("id", formData[i].id)
+  input.setAttribute("icon", formData[i].icon)
+  input.setAttribute("placeholder", formData[i].label)
+  }
+}
